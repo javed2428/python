@@ -1,0 +1,369 @@
+No Enclosing Delimiters:
+Any set of multiple objects, comma-separated, written without identifying symbols,
+i.e., brackets for lists, parentheses for tuples, etc., default to tuples, as indicated in
+these short examples:
+
+In Dictionary Each key is separated from its value by a colon (:), the items are separated by
+commas, and the whole thing is enclosed in curly braces. An empty dictionary without
+any items is written with just two curly braces, like this: {}.
+
+Keys are unique within a dictionary while values may not be. 
+
+The values of a dictionary can be of any type, but the keys must be of an immutable data type such as strings, numbers, or tuples.
+
+
+Here are simple rules
+to define a function in Python.:
+
+		Function blocks begin with the keyword def followed by the function name and
+		parentheses ( ( ) ).
+
+		Any input parameters or arguments should be placed within these parentheses. You can also define parameters inside these parentheses.
+		
+		The first statement of a function can be an optional statement - the
+		documentation string of the function or docstring.
+		 The code block within every function starts with a colon (:) and is indented.
+		 The statement return [expression] exits a function, optionally passing back an
+		expression to the caller. A return statement with no arguments is the same as
+		return None.
+
+
+
+All parameters (arguments) in the Python language are passed by reference. It
+means if you change what a parameter refers to within a function, the change also
+reflects back in the calling function
+
+
+see example on page 195 (for call by reference)
+
+An asterisk (*) is placed before the variable name that holds the values of all
+nonkeyword variable arguments. This tuple remains empty if no additional arguments
+are specified during the function call.
+		example : def printinfo( *vartuple ):
+
+					
+
+
+					MODULES
+A module allows you to logically organize your Python code. Grouping related code
+into a module makes the code easier to understand and use. A module is a Python
+object with arbitrarily named attributes that you can bind and reference.
+
+Simply, a module is a file consisting of Python code. A module can define functions,
+classes and variables. A module can also include runnable code.
+
+You can use any Python source file as a module by executing an import statement in
+some other Python source file. 			The import has the following syntax:
+		import module1[, module2[,... moduleN]
+
+When the interpreter encounters an import statement, it imports the module if the
+module is present in the search path. A search path is a list of directories that the
+interpreter searches before importing a module. 
+
+A module is loaded only once, regardless of the number of times it is imported. This
+prevents the module execution from happening over and over again if multiple
+imports occur.
+
+
+
+
+Python's from statement lets you import specific attributes from a module into the
+current namespace. The from...import has the following syntax:
+		from modname import name1[, name2[, ... nameN]]
+
+For example, to import the function fibonacci from the module fib, use the following
+statement:
+		from fib import fibonacci
+This statement does not import the entire module fib into the current namespace; it
+just introduces the item fibonacci from the module fib into the global symbol table of
+the importing module.
+
+
+
+It is also possible to import all names from a module into the current namespace by
+using the following import statement:
+		from modname import *
+This provides an easy way to import all the items from a module into the current
+namespace; however, this statement should be used sparingly.
+
+
+It assumes
+		that any variable assigned a value in a function is local.
+Therefore, in order to assign a value to a global variable within a function, you must
+first use the 
+		global statement.
+
+The dir() built-in function returns a sorted list of strings containing the names defined
+by a module.
+		dir(module)
+
+The globals() and locals() functions can be used to return the names in the global and
+local namespaces depending on the location from where they are called.
+
+
+
+
+When the module is imported into a script, the code in the top-level portion of a
+module is executed only once.
+Therefore, if you want to reexecute the top-level code in a module, you can use
+the reload()function. The reload() function imports a previously imported module
+again. The syntax of the reload() function is this:
+		reload(module_name)
+
+							
+
+
+							PACKAGES
+
+Must Read From Book
+also checked that package must be imported properly
+							
+
+							EXCEPTIONS
+
+
+	Assertions in Python
+An assertion is a sanity-check that you can turn on or turn off when you are done
+with your testing of the program.
+The easiest way to think of an assertion is to liken it to a raise-if statement (or to be
+more accurate, a raise-if-not statement). An expression is tested, and if the result
+comes up false, an exception is raised.
+Assertions are carried out by the assert statement, the newest keyword to Python,
+introduced in version 1.5.
+Programmers often place assertions at the start of a function to check for valid input,
+and after a function call to check for valid output.
+
+
+	The assert Statement
+When it encounters an assert statement, Python evaluates the accompanying
+expression, which is hopefully true. If the expression is false, Python raises
+an AssertionError exception.
+
+The syntax for assert is:
+		assert Expression[, Arguments]
+If the assertion fails, Python uses ArgumentExpression as the argument for the
+AssertionError. AssertionError exceptions can be caught and handled like any other
+exception using the try-except statement, but if not handled, they will terminate the
+program and produce a traceback.
+
+
+try: except :
+try: except : else :
+try: finally : 
+
+Note that you can provide except clause(s), or a finally clause, but not both. You
+cannot use else clause as well along with a finally clause.
+
+		Example
+try:
+	fh = open("testfile", "w")
+	try:
+		fh.write("This is my test file for exception handling!!")
+	finally:
+		print "Going to close the file"
+		fh.close()
+except IOError:
+	print "Error: can\'t find file or read data"
+When an exception is thrown in the try block, the execution immediately passes to
+the finally block. After all the statements in the finally block are executed, the
+exception is raised again and is handled in the except statements if present in the
+next higher layer of the try-except statement.
+
+
+
+Argument of an Exception
+An exception can have an argument, which is a value that gives additional information
+about the problem. The contents of the argument vary by exception. You can capture
+an exception's argument by supplying a variable in the except clause as follows:
+		try:
+			You do your operations here;
+			......................
+		except ExceptionType, Argument:
+			You can print value of Argument here...
+
+Raising an Exception, user defined exceptions(optional)
+
+
+
+
+
+							CLASSES
+
+
+
+Creating Classes
+The class statement creates a new class definition. The name of the class immediately
+follows the keyword class followed by a colon as follows:
+			class ClassName:
+				'Optional class documentation string'
+				class_suite
+
+The class has a documentation string, which can be accessed via 
+		ClassName.__doc__.
+
+The class_suite consists of all the component statements defining class
+members, data attributes and functions.
+
+class Employee:
+	'Common base class for all employees'
+	empCount = 0
+	def __init__(self, name, salary):
+		self.name = name
+		self.salary = salary
+		Employee.empCount += 1
+	def displayCount(self):
+		print "Total Employee %d" % Employee.empCount
+	def displayEmployee(self):
+		print "Name : ", self.name, ", Salary: ", self.salary
+
+The variable empCount is a class variable whose value is shared among all
+instances of a this class. This can be accessed as Employee.empCount from
+inside the class or outside the class.
+
+The first method __init__() is a special method, which is called class
+constructor or initialization method that Python calls when you create a new
+instance of this class.
+
+You declare other class methods like normal functions with the exception that
+the first argument to each method is self. 
+When you call a method Python adds the self argument to
+the list for you; you do not need to include it when you call the methods.
+
+
+Creating Instance Objects
+To create instances of a class, you call the class using class name and pass in
+whatever arguments its __init__ method accepts.
+	emp1 = Employee("Zara", 2000)
+
+Accessing Attributes
+You access the object's attributes using the dot operator with object. Class variable
+would be accessed using class name as follows:
+	emp1.displayEmployee() //instance variable
+	Employee.empCount += 1 //class variable
+
+
+You can add, remove, or modify attributes of classes and objects at any time:
+emp1.age = 7 # Add an 'age' attribute.
+emp1.age = 8 # Modify 'age' attribute.
+del emp1.age # Delete 'age' attribute.
+
+Instead of using the normal statements to access attributes, you can use the following
+functions:
+ The getattr(obj, name[, default]) : to access the attribute of object.
+ The hasattr(obj,name) : to check if an attribute exists or not.
+ The setattr(obj,name,value) : to set an attribute. If attribute does not exist,
+									then it would be created.
+
+The delattr(obj, name) : to delete an attribute.
+
+
+
+Destroying Objects (Garbage Collection)
+Python deletes unneeded objects (built-in types or class instances) automatically to
+free the memory space. The process by which Python periodically reclaims blocks of
+memory that no longer are in use is termed Garbage Collection.
+Python's garbage collector runs during program execution and is triggered when an
+object's reference count reaches zero. An object's reference count changes as the
+number of aliases that point to it changes.
+An object's reference count increases when it is assigned a new name or placed in a
+container (list, tuple, or dictionary). The object's reference count decreases when it's
+deleted with del, its reference is reassigned, or its reference goes out of scope. When
+an object's reference count reaches zero, Python collects it automatically.
+
+				a = 40 # Create object <40> b = a # Increase ref. count of <40>
+				c = [b] # Increase ref. count of <40>
+				del a # Decrease ref. count of <40>
+				b = 100 # Decrease ref. count of <40>
+				c[0] = -1 # Decrease ref. count of <40>
+
+DESTRUCTOR
+A class can implement the special
+method __del__(), called a destructor, that is invoked when the instance is about to
+be destroyed. This method might be used to clean up any non-memory resources
+used by an instance.
+
+
+
+NOTE: 
+Ideally, you should define your classes in separate file, then you should import
+them in your main program file using import statement.
+
+Class Inheritance
+Instead of starting from scratch, you can create a class by deriving it from a
+preexisting class by listing the parent class in parentheses after the new class name.
+The child class inherits the attributes of its parent class, and you can use those
+attributes as if they were defined in the child class. A child class can also override
+data members and methods from the parent.
+
+Syntax
+Derived classes are declared much like their parent class; however, a list of base
+classes to inherit from is given after the class name:
+		class SubClassName (ParentClass1[, ParentClass2, ...]):
+			'Optional class documentation string'
+			class_suite
+
+
+You can use issubclass() or isinstance() functions to check a relationships of two
+classes and instances.
+
+The issubclass(sub, sup) boolean function returns true if the given
+subclass sub is indeed a subclass of the superclass sup.
+
+The isinstance(obj, Class) boolean function returns true if obj is an instance
+of class Class or is an instance of a subclass of Class
+
+
+
+Overriding Methods
+You can always override your parent class methods. One reason for overriding
+parent's methods is because you may want special or different functionality in your
+subclass.
+Example
+	#!/usr/bin/python
+	class Parent:
+		# define parent class
+		def myMethod(self):
+			print 'Calling parent method'
+
+	class Child(Parent): # define child class
+		def myMethod(self):
+			print 'Calling child method'
+	c = Child() # instance of child
+	c.myMethod() # child calls overridden method
+When the above code is executed, it produces the following result:
+Calling child method
+
+
+
+
+
+
+Data Hiding
+An object's attributes may or may not be visible outside the class definition. You need
+to name attributes with a double underscore prefix, and those attributes then are not
+be directly visible to outsiders.
+Example
+#!/usr/bin/python
+class JustCounter:
+	__secretCount = 0
+	def count(self):
+		self.__secretCount += 1
+		print self.__secretCount
+counter = JustCounter()
+counter.count()
+counter.count()
+print counter.__secretCount
+
+When the above code is executed, it produces the following result:
+	1
+	2
+	Traceback (most recent call last):
+	File "test.py", line 12, in <module>
+	print counter.__secretCount
+	AttributeError: JustCounter instance has no attribute '__secretCount'
+
+	
+Python protects those members by internally changing the name to include the class
+name. You can access such attributes as object._className__attrName. If you would
+replace your last line as following, then it works for you:
+	print counter._JustCounter__secretCount
