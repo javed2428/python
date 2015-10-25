@@ -1,6 +1,8 @@
 http://www.sitepoint.com/virtual-environments-python-made-easy/
 							
 
+							
+
 							PIP
 It’s a package manager that is very useful when you want to distribute your project to others, as it allows the developer to install all the required packages with a 
 requirements.txt file.
@@ -21,6 +23,8 @@ And then use pip to install virtualenv:
 	sudo pip install virtualenv
 
 
+								
+
 								virtualenv
 Virtualenv helps solve project dependency conflicts by creating isolated environments which can contain all the goodies Python programmers need to develop their projects.'
 
@@ -37,6 +41,8 @@ Everything installed in the virt1 directory will not affect the global packages 
 If I now install the newest version of requests, the old one does not get uninstalled. The new one is installed in the virtual environment exclusively.
 	pip -I install requests 	
 
+
+							
 
 							After the environment is created
 Once the virtual environment gets activated, your terminal prompt changes to show the user in which directory they are working:
@@ -55,4 +61,78 @@ If you deactivate and which again, you should get a different output.
 	/usr/bin/python
 
 This is because when working inside a virtual environment, the binary copy placed inside that environment is being used. The same applies to packages.
+
+We can use the option -p while working with virtualenv in order to use a specific version of Python which is globally installed on the machine.
+
+For example, the following command can be used to create the virtual environment virt2 with Python3 in it, if you have Python3 installed on your machine.
+	virtualenv -p /usr/bin/python3 virt2
+
+And to delete a virtual environment you use the rm -r command like you do with any other directory you want to delete.
+	rm -r virt2
+
+
+							
+
+							virtualenvwrapper
+
+Virtualenvwrapper provides very useful commands that make working with virtual environments even easier. For example, the workon command can be used to activate and work on a virtual environment:
+	workon virt1
+
+It, too, is installed easily with pip.
+	pip install virtualenvwrapper											
+
+
+I like to keep all my virtual environments in a single place. To accomplish this, run the following command to create a new directory for your virtual environments.
+	mkdir ~/.virtualenvs			
+
+Then set WORKON_HOME to ~/.virtualenvs like shown below.
+	export WORKON_HOME=~/.virtualenvs	
+
+Once this is done, we can open the .bashrc file inside the home directory using a text editor and add the following line to the end of it.
+	. /usr/local/bin/virtualenvwrapper.sh
+
+Then, we reload the .bashrc file with the following command.
+	source ~/.bashrc
+
+Now, the mkvirtualenv command can be used to easily make new environments placed by default inside this folder.	
+	mkvirtualenv sitepoint
+
+We can easily activate the virtual environment with the help of the workon command:
+	workon sitepoint
+
+The command to deactivate the virtual environment is the same as the one we used before.
+	deactivate
+
+It’s very easy to switch between different virtual environments. For example, to workon another virtual environment:
+	workon another_virtualenv	
+
+To delete a virtual environment, the command rmvirtualenv should be used.
+	rmvirtualenv sitepoint
+
+
+
+
+
+							Autoenv
+Another very useful tip is the one that helps automatically activate the virtual environments when the one cd’s into their project.
+
+For this, a .env file should be placed inside the project directory.
+		cd sitepointproject
+		vim .env
+
+Inside the .env file, we insert the following line.
+		workon name_of_virtualenv_here
+
+The autoenv tool will help us automagically activate the environment when navigating into a directory containing a .env file. To install it, we clone it.
+		git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+
+Then we use echo to place another line inside the .bashrc file. You can also use a text editor to do it.
+		echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc
+
+Now, every time you cd into your project, the virtual environment will get activated automatically.
+
+
+
+
+
 
