@@ -1,0 +1,58 @@
+http://www.sitepoint.com/virtual-environments-python-made-easy/
+							
+
+							PIP
+It’s a package manager that is very useful when you want to distribute your project to others, as it allows the developer to install all the required packages with a 
+requirements.txt file.
+
+For example, a fellow developer can activate a virtual environment and then run the following command to install the dependencies of the project:
+	pip install -r requirements.txt
+
+To generate the dependencies file of your project, you run the following command.
+	pip freeze > requirements.txt	
+
+The pip tool can also be used to uninstall a package from your machine:
+	pip uninstall some-package-name	
+
+One can install pip system-wide with the default Python package manager:
+ 	sudo easy_install pip	
+
+And then use pip to install virtualenv:
+	sudo pip install virtualenv
+
+
+								virtualenv
+Virtualenv helps solve project dependency conflicts by creating isolated environments which can contain all the goodies Python programmers need to develop their projects.'
+
+A virtual environment created using this tool includes a fresh copy of the Python binary itself as well as a copy of the entire Python standard library.
+
+To create a virtual environment for your Python project, you type the command virtualenv followed by the name you want to give to the virtual environment like shown below.
+	virtualenv virt1
+
+It is very important to know that each time you want to use a created virtual environment, you need to activate it. The following command does this:
+	source virt1/bin/activate	
+
+Everything installed in the virt1 directory will not affect the global packages or the system wide installations, thus avoiding dependency conflicts.
+
+If I now install the newest version of requests, the old one does not get uninstalled. The new one is installed in the virtual environment exclusively.
+	pip -I install requests 	
+
+
+							After the environment is created
+Once the virtual environment gets activated, your terminal prompt changes to show the user in which directory they are working:
+	(virt1)oltjano@baby:~/Desktop/myproject$
+
+The following command will let you deactivate the virtual environment:
+	deactivate			
+
+You can use the which command to check the Python binary that is used in the current virtual environment.
+	which python
+
+If everything is working well, you should get something similar to the following output.
+	/home/oltjano/Desktop/myproject/virt1/bin/python
+
+If you deactivate and which again, you should get a different output.
+	/usr/bin/python
+
+This is because when working inside a virtual environment, the binary copy placed inside that environment is being used. The same applies to packages.
+
